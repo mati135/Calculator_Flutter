@@ -1,6 +1,7 @@
 import 'package:caluclator/components/buttons.dart';
 import 'package:caluclator/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -10,6 +11,8 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_SrceenState extends State<Home_Screen> {
+  var userinput = '';
+  var answer = '';
   @override
   Widget build(BuildContext context) {
     print('Rebuild');
@@ -17,30 +20,71 @@ class _Home_SrceenState extends State<Home_Screen> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 6),
           child: Column(
             children: [
-              Column(),
               Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            userinput.toString(),
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          ),
+                          Text(
+                            answer.toString(),
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
                 child: Column(
                   children: [
                     Row(
                       children: [
                         MyButton(
                           title: 'AC',
-                          onPress: () {},
+                          onPress: () {
+                            userinput = '';
+                            answer = '';
+                            setState(() {});
+                          },
+                          color: Color(0xffa5a5a5),
+                          textColor: Colors.black,
                         ),
                         MyButton(
-                          title: '+/-',
-                          onPress: () {},
+                          title: '+/−',
+                          onPress: () {
+                            userinput += '+/-';
+                            setState(() {});
+                          },
+                          color: Color(0xffa5a5a5),
                         ),
                         MyButton(
                           title: '%',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '%';
+                            setState(() {});
+                          },
+                          color: Color(0xffa5a5a5),
                         ),
                         MyButton(
                           title: '÷',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '/';
+                            setState(() {});
+                          },
                           color: Color(0xffffa00a),
                         )
                       ],
@@ -49,19 +93,31 @@ class _Home_SrceenState extends State<Home_Screen> {
                       children: [
                         MyButton(
                           title: '7',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '7';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '8',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '8';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '9',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '9';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: 'x',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '*';
+                            setState(() {});
+                          },
                           color: Color(0xffffa00a),
                         )
                       ],
@@ -71,20 +127,30 @@ class _Home_SrceenState extends State<Home_Screen> {
                         MyButton(
                           title: '4',
                           onPress: () {
-                            print('tap');
+                            userinput += '4';
+                            setState(() {});
                           },
                         ),
                         MyButton(
                           title: '5',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '5';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '6',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '6';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
-                          title: '-',
-                          onPress: () {},
+                          title: '−',
+                          onPress: () {
+                            userinput += '-';
+                            setState(() {});
+                          },
                           color: Color(0xffffa00a),
                         )
                       ],
@@ -93,19 +159,31 @@ class _Home_SrceenState extends State<Home_Screen> {
                       children: [
                         MyButton(
                           title: '1',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '1';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '2',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '2';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '3',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '3';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '+',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '+';
+                            setState(() {});
+                          },
                           color: Color(0xffffa00a),
                         )
                       ],
@@ -114,19 +192,32 @@ class _Home_SrceenState extends State<Home_Screen> {
                       children: [
                         MyButton(
                           title: '0',
-                          onPress: () {},
+                          onPress: () {
+                            userinput += '0';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
-                          title: '-',
-                          onPress: () {},
+                          title: '.',
+                          onPress: () {
+                            userinput += '.';
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: 'DEL',
-                          onPress: () {},
+                          onPress: () {
+                            userinput =
+                                userinput.substring(0, userinput.length - 1);
+                            setState(() {});
+                          },
                         ),
                         MyButton(
                           title: '=',
-                          onPress: () {},
+                          onPress: () {
+                            equalpress();
+                            setState(() {});
+                          },
                           color: Color(0xffffa00a),
                         )
                       ],
@@ -139,5 +230,15 @@ class _Home_SrceenState extends State<Home_Screen> {
         ),
       ),
     );
+  }
+
+  void equalpress() {
+    //  String finaluser = userinput.replaceAll('*', 'x');
+    Parser p = Parser();
+    Expression expression = p.parse(userinput);
+    ContextModel contextModel = ContextModel();
+    double eval = expression.evaluate(EvaluationType.REAL, contextModel);
+    answer = eval.toString();
+    print(eval);
   }
 }
